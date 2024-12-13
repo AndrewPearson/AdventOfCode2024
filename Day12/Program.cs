@@ -13,6 +13,7 @@ Console.WriteLine("==== Plots ====");
 // {
 //     Console.Out.PrintPlot(map, plot);
 // }
+Console.WriteLine();
 
 Console.WriteLine("==== Plot Prices ====");
 foreach (var plot in plots)
@@ -23,4 +24,15 @@ Console.WriteLine();
 
 var totalPrice = plots.Sum(static x => x.Area*x.Perimeter);
 Console.WriteLine($"Total Price = {totalPrice}");
+Console.WriteLine();
 
+
+Console.WriteLine("==== Discount Plot Prices ====");
+foreach (var plot in plots)
+{
+    Console.WriteLine($"A region of {plot.Type} plants with discount price {plot.Area}*{plot.Sides} = {plot.Area*plot.Sides}.");
+}
+Console.WriteLine();
+
+var discountTotalPrice = plots.Sum(static x => x.Area*x.Sides);
+Console.WriteLine($"Total Price = {discountTotalPrice}");

@@ -13,25 +13,8 @@ public class Plot
         }
 
         Type = _squares.First().Type;
-
-        // calc perimeter
-        var locs = _squares.Select(static s => s.Location).ToHashSet();
-
-        var perim = 0;
-        foreach (var loc in locs)
-        {
-            var surrounding = new[]
-            {
-                loc with { Row = loc.Row - 1 },
-                loc with { Row = loc.Row + 1 },
-                loc with { Column = loc.Column - 1 },
-                loc with { Column = loc.Column + 1 },
-            };
-
-            perim += surrounding.Select(x => locs.Contains(x) ? 0 : 1).Sum();
-        }
-
-        Perimeter = perim;
+        Perimeter = this.CalculatePerimeter();
+        Sides = this.CountSides();
     }
 
     public IEnumerable<Square> Squares => _squares;
@@ -39,6 +22,8 @@ public class Plot
     public char Type { get; }
 
     public long Perimeter { get; }
+
+    public long Sides { get; }
 
     public long Area => _squares.Count;
 }
