@@ -1,7 +1,8 @@
 ﻿using Day14;
 
 var filePath = "Data/input.txt";
-const int nTicks = 7339;
+const int nTicks = 10000;
+const int interestingBlockSize = 20;
 
 var model = DataReader.Load(filePath);
 
@@ -11,14 +12,20 @@ var model = DataReader.Load(filePath);
 for (int i = 1; i <= nTicks; ++i)
 {
     model.Tick();
-    // Console.WriteLine($"After {i} seconds");
-    // Console.Out.WriteLine(model);
-    // Console.WriteLine();
-    // Console.ReadLine();
+    if (i%100 == 0)
+        Console.WriteLine($"After {i} seconds");
+
+    if (model.LargestContiguousRow() >= interestingBlockSize)
+    {
+        Console.WriteLine($"After {i} seconds");
+        Console.Out.WriteLine(model);
+        Console.WriteLine();
+        Console.ReadLine();
+    }
 }
-Console.WriteLine($"After {nTicks} seconds");
-Console.Out.WriteLine(model);
-Console.WriteLine();
+// Console.WriteLine($"After {nTicks} seconds");
+// Console.Out.WriteLine(model);
+// Console.WriteLine();
 
 var robotCounts = model.RobotsByQuadrant();
 
